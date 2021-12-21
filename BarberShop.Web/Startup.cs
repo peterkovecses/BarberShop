@@ -11,10 +11,10 @@ using BarberShop.Bll.Services;
 using BarberShop.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using BarberShop.Web.Settings;
-//using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using BarberShop.Web.Services;
-// using BarberShop.Data.Seed.Interfaces;
-// using BarberShop.Data.Seed.Services;
+//using BarberShop.Data.Seed.Interfaces;
+//using BarberShop.Data.Seed.Services;
 using Microsoft.AspNetCore.Http.Features;
 using BarberShop.Web.Interfaces;
 using BarberShop.Data.Seed.Settings;
@@ -35,9 +35,9 @@ namespace BarberShop.Web
         {
             services.AddDbContext<BarberShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddIdentity<AppUser, IdentityRole<int>>()
-            //    .AddEntityFrameworkStores<DrPetDbContext>()
-            //    .AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole<int>>()
+                .AddEntityFrameworkStores<BarberShopDbContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = true;
@@ -71,8 +71,8 @@ namespace BarberShop.Web
                 options.SlidingExpiration = true;
             });
 
-            //services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
-            //services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IEmailSender, EmailSender>();
 
             //services.AddScoped<IRoleSeedService, RoleSeedService>();
 

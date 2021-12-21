@@ -21,7 +21,7 @@ namespace BarberShop.Data.Entities
         {
             builder.HasIndex(a => new { a.Date, a.BarberId }).IsUnique();
 
-            builder.HasOne(a => a.Barber).WithMany(b => b.Appointments)
+            builder.HasOne(a => a.Barber).WithMany(b => b.BarberAppointments)
                 .HasForeignKey(a => a.BarberId).HasPrincipalKey(b => b.Id)
                 .OnDelete(DeleteBehavior.Restrict);
 

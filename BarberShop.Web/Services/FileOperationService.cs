@@ -40,7 +40,7 @@ namespace BarberShop.Web.Services
                 return (null, FileErrorType.Size);
             }
 
-            var photoPath = $"doctorImages/{barber.Name.ToLower()}{DateTime.Now}".RemoveStrings(new string[] { " ", ".", "-", ":" }).RemoveAccents();
+            var photoPath = $"barberImages/{barber.Name.ToLower()}{DateTime.Now}".RemoveStrings(new string[] { " ", ".", "-", ":" }).RemoveAccents();
             photoPath = $"{photoPath}{ext}";
 
             var filePath = Path.Combine(_environment.WebRootPath, photoPath);

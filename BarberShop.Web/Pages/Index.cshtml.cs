@@ -1,25 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BarberShop.Bll.Interfaces;
+using BarberShop.Bll.DTOs;
 
 namespace BarberShop.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public IBarberService BarberService { get; }
+        public IndexModel(IBarberService barberService)
         {
-            _logger = logger;
+            BarberService = barberService;
         }
 
-        public void OnGet()
-        {
+        public IEnumerable<BarberDTO> Barbers { get; set; }
 
+        public async Task OnGetAsync()
+        {
+            var barbers = await BarberService.GetBarbersAsync();
+            Barbers = barbers.OrderBy(d => d.Id).Take(4);
         }
     }
 }
