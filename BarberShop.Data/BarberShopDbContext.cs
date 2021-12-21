@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace BarberShop.Data
 {
-    public class BarberShopDbContext : IdentityDbContext<UserBase, IdentityRole<int>, int>
+    public class BarberShopDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     {
         public BarberShopDbContext(DbContextOptions options) : base(options) { }
 

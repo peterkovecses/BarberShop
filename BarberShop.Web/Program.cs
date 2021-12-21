@@ -1,4 +1,4 @@
-// using BarberShop.Data.Seed.Interfaces;
+using BarberShop.Data.Seed.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ namespace BarberShop.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
@@ -23,12 +23,12 @@ namespace BarberShop.Web
                 dbContext.Database.Migrate();
 
                 // create the admin role
-                //var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeedService>();
-                //await roleSeeder.SeedRoleAsync();
+                var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeedService>();
+                await roleSeeder.SeedRoleAsync();
 
                 // create the admin user
-                //var userSeeder = scope.ServiceProvider.GetRequiredService<IUserSeedService>();
-                //await userSeeder.SeedUserAsync();
+                var userSeeder = scope.ServiceProvider.GetRequiredService<IUserSeedService>();
+                await userSeeder.SeedUserAsync();
             }
             host.Run();
         }

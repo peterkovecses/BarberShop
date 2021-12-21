@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using BarberShop.Web.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BarberShop.Web.Services;
-//using BarberShop.Data.Seed.Interfaces;
-//using BarberShop.Data.Seed.Services;
+using BarberShop.Data.Seed.Interfaces;
+using BarberShop.Data.Seed.Services;
 using Microsoft.AspNetCore.Http.Features;
 using BarberShop.Web.Interfaces;
 using BarberShop.Data.Seed.Settings;
@@ -74,10 +74,10 @@ namespace BarberShop.Web
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailSender, EmailSender>();
 
-            //services.AddScoped<IRoleSeedService, RoleSeedService>();
+            services.AddScoped<IRoleSeedService, RoleSeedService>();
 
             services.Configure<AdminSettings>(Configuration.GetSection("AdminSettings"));
-            //services.AddScoped<IUserSeedService, UserSeedService>();
+            services.AddScoped<IUserSeedService, UserSeedService>();
 
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IBarberService, BarberService>();
