@@ -83,11 +83,14 @@ namespace BarberShop.Web
             services.AddScoped<IBarberService, BarberService>();
             services.AddScoped<IServiceTypeService, ServiceTypeService>();
             services.AddScoped<IFileOperationService, FileOperationService>();
+            services.AddScoped<IAppUserService, AppUserService>();
 
-            //services.AddAuthentication().AddGoogle(options => {
-            //    options.ClientId = Configuration["Authentication:Google:ClientId"];
-            //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //});
+
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = Configuration["Authentication:Google:ClientId"];
+                options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
 
             services.AddAuthorization(options =>
             {

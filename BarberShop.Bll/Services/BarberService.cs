@@ -48,21 +48,27 @@ namespace BarberShop.Bll.Services
                 .SingleOrDefaultAsync());
         }
 
-        public async Task AddOrUpdateBarberAsync(BarberDTO barberDTO)
+        public async Task<int> AddBarberAsync(BarberUserDTO barberUserDTO)
+        {
+            var barber = new Barber
+            {
+                Name = barberUserDTO.Name,
+                PublicDescription = barberUserDTO.PublicDescription,
+                PhotoPath = barberUserDTO.PhotoPath
+            };
+
+            DbContext.Barbers.Add(barber);
+
+            await DbContext.SaveChangesAsync();
+
+            return barber.Id;
+        }
+
+        public async Task UpdateBarberAsync(BarberDTO barberDTO)
         {
             EntityEntry<Barber> entry;
-
-            // update
-            if (barberDTO.Id != 0)
-            {
-                var barber = await DbContext.Barbers.FindAsync(barberDTO.Id);
-                entry = DbContext.Entry(barber);
-            }
-
-            // create
-            else
-                entry = DbContext.Add(new Barber());
-
+            var barber = await DbContext.Barbers.FindAsync(barberDTO.Id);
+            entry = DbContext.Entry(barber);
             entry.CurrentValues.SetValues(barberDTO);
 
             await DbContext.SaveChangesAsync();
@@ -70,12 +76,19 @@ namespace BarberShop.Bll.Services
 
         public async Task DeleteBarberAsync(int id)
         {
-            var barber = await DbContext.Barbers.FindAsync(id);
+            //var barber = await DbContext.Barbers.FindAsync(id);
+
+            var barber = await DbContext.AppUsers
+                .Where(au => au.BarberId == id)
+                .Include(au => au.Barber)
+                .SingleOrDefaultAsync();
 
             if (barber != null)
-                barber.IsDeleted = true;
+                barber.Barber.IsDeleted = true;
 
-            DbContext.SaveChanges();
-        }
+            DbContext.AppUsers.Remove(barber);
+
+            await DbContext.SaveChangesAsync();
+        }        
     }
 }

@@ -1,0 +1,49 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.Barbers.DetailsModel
+
+<h1>Borbély adatlap</h1>
+
+<div>
+    <hr />
+    <div class="row">
+
+        <dl class="row col-sm-10">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Barber.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Barber.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Barber.PhoneNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Barber.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Barber.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Barber.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Barber.PublicDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Barber.PublicDescription)
+            </dd>
+        </dl>
+
+        <div class="col-md-2">
+            @if (Model.Barber.PhotoPath != null)
+            {
+                <img style="max-height: 300px;" src="@($"/{Model.Barber.PhotoPath}")" alt="@Model.Barber.Name">
+            }
+        </div>
+
+    </div>    
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Barber.BarberId">Szerkesztés</a> |
+    <a asp-page="./Index">Vissza a borbélylistára</a>
+</div>

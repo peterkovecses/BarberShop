@@ -1,0 +1,67 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.Barbers.IndexModel
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h1>Borbélyok kezelése</h1>
+    <span id="spinner" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+    <a asp-page="./Create" class="btn btn-outline-primary">
+        <i class="fas fa-plus"></i>&nbsp;Új borbély rögzítése
+    </a>
+</div>
+
+<table class="table" id="barberTable">
+    <thead>
+        <tr>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.Barbers[0].Name)
+            </th>
+
+            <th class="col-md-9">
+                @Html.DisplayNameFor(model => model.Barbers[0].ShortPublicDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Barbers)
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+
+                <td>
+                    @Html.Raw(item.ShortPublicDescription)
+                </td>
+
+                <td class="d-flex">
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm text-primary" title="Szerkesztés">
+                        <i class="far fa-edit"></i>
+                    </a>
+
+                    <form method="post"
+                          data-ajax="true"
+                          data-ajax-method="post"
+                          data-ajax-confirm="Biztosan törölni szeretné az borbélyt?"
+                          data-ajax-loading="#spinner"
+                          data-ajax-success="refreshPage">
+                        <input type="hidden" name="id" value="@item.Id">
+                        <button type="submit" class="btn btn-sm text-danger" title="Törlés">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#barberTable').dataTable();
+        });
+    </script>
+
+    <script src="/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+}

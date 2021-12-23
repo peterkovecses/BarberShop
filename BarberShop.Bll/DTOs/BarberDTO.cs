@@ -18,10 +18,6 @@ namespace BarberShop.Bll.DTOs
         [Display(Name = "Leírás")]
         public string? ShortPublicDescription { get; set; }
 
-        [Required]
-        [Display(Name = "E-mail cím")]
-        public string Email { get; set; }
-
         [Display(Name = "Fotó")]
         public IFormFile? Photo { get; set; }
 

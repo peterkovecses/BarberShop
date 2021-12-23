@@ -1,0 +1,86 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.Barbers.EditModel
+
+<h1>Borbély szerkesztése</h1>
+
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Barber.Id" />
+            <input type="hidden" asp-for="Barber.PhotoPath" />
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.Name" class="control-label"></label>
+                <input asp-for="Barber.Name" class="form-control" />
+                <span asp-validation-for="Barber.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Barber.PublicDescription" class="control-label"></label>
+                <textarea asp-for="Barber.PublicDescription" class="form-control" rows="8"></textarea>
+                <span asp-validation-for="Barber.PublicDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Módosít" class="btn btn-primary" />
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new img-thumbnail" style="width: 200px; height: 150px;">
+                    <img src="@($"/{Model.Barber.PhotoPath}")" />
+                </div>
+                <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                <div>
+                    <span class="btn btn-outline-secondary btn-file">
+                        <span class="fileinput-new">Új kép</span>
+                        <span class="fileinput-exists">Módosítás</span>
+                        <input asp-for="Barber.Photo" type="file" />
+                    </span>
+                    <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">
+                        Eltávolítás
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<div>
+    <a asp-page="Index">Vissza a borbélylistához</a>
+</div>
+
+@section Css{
+    <link href="~/lib/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    <script src="~/lib/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        tinymce.init({
+            selector: '#Barber_PublicDescription',
+            height: 300,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+    </script>
+}

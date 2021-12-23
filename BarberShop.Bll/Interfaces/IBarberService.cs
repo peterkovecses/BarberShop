@@ -1,8 +1,5 @@
 ﻿using BarberShop.Bll.DTOs;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BarberShop.Bll.Interfaces
@@ -11,9 +8,11 @@ namespace BarberShop.Bll.Interfaces
     {
         public Task<IList<BarberDTO>> GetBarbersAsync();
 
-        public Task<BarberDTO> GetBarberAsync(int id);
+        public Task<BarberDTO> GetBarberAsync(int id);        
 
-        public Task AddOrUpdateBarberAsync(BarberDTO barberDTO);
+        public Task<int> AddBarberAsync(BarberUserDTO barberUserDTO);
+
+        public Task UpdateBarberAsync(BarberDTO barberDTO);
 
         public Task DeleteBarberAsync(int id);
     }

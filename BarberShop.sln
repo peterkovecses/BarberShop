@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Bll", "BarberShop.Bll\BarberShop.Bll.csproj", "{6713619E-75D5-4994-9D6C-57195E505892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Web", "BarberShop.Web\BarberShop.Web.csproj", "{DC81572E-1C1B-4D27-863B-2967D6AE98FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Web", "BarberShop.Web\BarberShop.Web.csproj", "{DC81572E-1C1B-4D27-863B-2967D6AE98FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,6 +6,6 @@ namespace BarberShop.Web.Interfaces
 {
     public interface IFileOperationService
     {
-        public Task<(string, FileErrorType?)> SaveFileAsync(BarberDTO barber);
+        public Task<(string, FileErrorType?)> SaveFileAsync(BarberUserDTO barber);
     }
 }

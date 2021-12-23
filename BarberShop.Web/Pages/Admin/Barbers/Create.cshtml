@@ -1,0 +1,88 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.Barbers.CreateModel
+
+<h1>Borbély rögzítése</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.Name" class="control-label"></label>
+                <input asp-for="Barber.Name" class="form-control" />
+                <span asp-validation-for="Barber.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Barber.PublicDescription" class="control-label"></label>
+                <textarea asp-for="Barber.PublicDescription" class="form-control" rows="8"></textarea>
+                <span asp-validation-for="Barber.PublicDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.Email" class="control-label"></label>
+                <input asp-for="Barber.Email" type="email" class="form-control" />
+                <span asp-validation-for="Barber.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.PhoneNumber" class="control-label"></label>
+                <input asp-for="Barber.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Barber.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.Password"></label>
+                <input asp-for="Barber.Password" class="form-control" />
+                <span asp-validation-for="Barber.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.ConfirmPassword"></label>
+                <input asp-for="Barber.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Barber.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-5 p-0">
+                <label asp-for="Barber.Photo" class="control-label"></label>
+                <input asp-for="Barber.Photo" type="file" class="form-control" />
+                <span asp-validation-for="Barber.Photo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Létrehoz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Vissza az orvoslistához</a>
+</div>
+
+
+@section Scripts {
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        tinymce.init({
+            selector: '#Barber_PublicDescription',
+            height: 300,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+    </script>
+}

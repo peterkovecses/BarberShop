@@ -52,7 +52,7 @@ namespace BarberShop.Data.Seed.Services
 
                     if (!createResult.Succeeded || !addToRoleResult.Succeeded)
                     {
-                        throw new ApplicationException("Nem sikerült létrehozni az orvos felhasználót: " +
+                        throw new ApplicationException("Nem sikerült létrehozni az borbély felhasználót: " +
                             string.Join(", ", createResult.Errors.Concat(addToRoleResult.Errors).Select(e => e.Description)));
                     }
                 }

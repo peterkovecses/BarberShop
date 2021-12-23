@@ -24,7 +24,7 @@ namespace BarberShop.Web.Services
             _allowedExtensions = configuration.GetSection("AllowedExtensions").Get<List<string>>();
         }
 
-        public async Task<(string, FileErrorType?)> SaveFileAsync(BarberDTO barber)
+        public async Task<(string, FileErrorType?)> SaveFileAsync(BarberUserDTO barber)
         {
             var fileName = barber.Photo.FileName;
 
