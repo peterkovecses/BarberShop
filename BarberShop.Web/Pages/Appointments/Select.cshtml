@@ -1,0 +1,59 @@
+﻿@page
+@model BarberShop.Web.Pages.Appointments.SelectModel
+
+@if (Model.FreeAppointments != null)
+{
+    if (!Model.FreeAppointments.Any())
+    {
+        <h3>Nincsenek szabad időpontok a kiválasztott borbélyhoz a megjelölt napra.</h3>
+
+        <a class="btn btn-secondary mt-3" style="width: 100px; height: 40px;" href='javascript:history.go(-1)'>Vissza</a>
+    }
+
+    else
+    {
+        <h2 class="mb-4">Időpont kiválasztása</h2>
+
+        <hr />
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="@Model.Appointment.BarberId" />
+            <input type="hidden" asp-for="@Model.Appointment.ServiceTypeId" />
+            <input type="hidden" id="appointmentId" value="" asp-for="@Model.Appointment.Id" />
+
+            <div class=" row">
+                @foreach (var appointment in Model.FreeAppointments)
+                {
+                    <div class="form-group col-sm-2 btn btn-outline-dark m-3" style="max-width: 100px; height: 40px;">
+                        <input type="radio" asp-for="@Model.Appointment.Date" id="@appointment.Id" onclick="setValues(this.id)" value="@appointment.Id">
+                        <label for="@appointment.Id">@Html.DisplayFor(modelItem => appointment.Date)</label>
+                    </div>
+                }
+            </div>
+
+            <div class="row mt-3">
+                <div class="form-group col-md-1 mr-5">
+                    <a class="btn btn-secondary" style="width: 100px; height: 40px;" href='javascript:history.go(-1)'>Vissza</a>
+                </div>
+
+                <div class="form-group col-md-1">
+                    <input type="submit" value="Kész" class="btn btn-primary" style="width: 100px; height: 40px;" />
+                </div>
+            </div>
+        </form>
+    }
+}
+
+<partial name="_StatusMessagePartial" model="Model.StatusMessage" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function setValues(id) {
+            document.getElementById("appointmentId").value = id;
+        }
+    </script>
+}

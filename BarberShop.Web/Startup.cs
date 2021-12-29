@@ -79,6 +79,8 @@ namespace BarberShop.Web
             services.Configure<AdminSettings>(Configuration.GetSection("AdminSettings"));
             services.AddScoped<IUserSeedService, UserSeedService>();
 
+            services.AddScoped<IAppointmentSeedService, AppointmentSeedService>();
+
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IBarberService, BarberService>();
             services.AddScoped<IServiceTypeService, ServiceTypeService>();

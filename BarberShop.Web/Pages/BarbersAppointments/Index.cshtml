@@ -1,0 +1,49 @@
+﻿@page
+@model BarberShop.Web.Pages.BarbersAppointments.IndexModel
+
+<h1>Lefoglallt időpontok</h1>
+
+<table class="table" id="consultingsTable">
+    <thead>
+        <tr>
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.Appointments[0].Date)
+            </th>
+
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.Appointments[0].AppUserName)
+            </th>
+
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.Appointments[0].ServiceTypeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppUserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceTypeName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#consultingsTable').dataTable();
+        });
+    </script>
+}

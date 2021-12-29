@@ -65,7 +65,8 @@ namespace BarberShop.Data.Seed.Services
                 {
                     UserName = _adminSettings.UserName,
                     Email = _adminSettings.Email,
-                    Name = _adminSettings.Name,
+                    PhoneNumber = _adminSettings.PhoneNumber,
+                    Name = _adminSettings.Name,                    
                     SecurityStamp = Guid.NewGuid().ToString() // random string
                 };
 

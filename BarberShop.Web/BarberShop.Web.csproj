@@ -26,9 +26,4 @@
     <ProjectReference Include="..\BarberShop.Bll\BarberShop.Bll.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\BarberAdmin\" />
-    <Folder Include="Pages\Booking\" />
-  </ItemGroup>
-
 </Project>

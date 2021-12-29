@@ -10,9 +10,11 @@ namespace BarberShop.Bll.DTOs
 {
     public class AppointmentDTO
     {
+        [Required]
         public int Id { get; set; }
 
         [Display(Name = "Időpont")]
+        [DisplayFormat(DataFormatString = "{0: HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Szolgáltatás")]

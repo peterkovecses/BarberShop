@@ -1,0 +1,46 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.Appointments.CreateModel
+
+<h2 class="mb-4">Nyitva tartási nap rögzítése</h2>
+
+<hr />
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="OpeningHours.Opening" class="control-label"></label>
+        <input asp-for="OpeningHours.Opening" max="9999-02-20T20:20" class="form-control" />
+        <span asp-validation-for="OpeningHours.Opening" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OpeningHours.Closing" class="control-label"></label>
+        <input asp-for="OpeningHours.Closing" max="9999-02-20T20:20" class="form-control" />
+        <span asp-validation-for="OpeningHours.Closing" class="text-danger"></span>
+    </div>
+
+    <label asp-for="OpeningHours.BarberIdentities" class="control-label"></label>
+
+    <div class="form-check-inline">
+        @for (var i = 0; i < Model.BarbersInDb.Count(); i++)
+        {
+            <div class="form-check">
+                <input type="checkbox" value="@Model.BarbersInDb[i].Id" name="OpeningHours.BarberIdentities" />
+                <label>@Model.BarbersInDb[i].Name</label>
+            </div>
+        }
+    </div>
+
+    <div class="mt-3">
+        <div class="form-group">
+            <input type="submit" value="Rögzít" class="btn btn-primary" style="width: 100px; height: 40px;" />
+        </div>
+    </div>
+</form>
+
+<partial name="_StatusMessagePartial" model="Model.StatusMessage" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

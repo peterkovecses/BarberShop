@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DrPet.Web</title>
+    <title>@ViewData["Title"] - Barber Shop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
@@ -27,27 +27,30 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.IsInRole("Administrators"))
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin" role="button"
-                                   data-toggle="dropdown" area-expanded="false">
-                                    Adminisztráció
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin" role="button"
+                               data-toggle="dropdown" area-expanded="false">
+                                Adminisztráció
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarAdmin">
+                                <a class="dropdown-item" asp-page="/Admin/Barbers/Index">
+                                    Borbélyok kezelése
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarAdmin">
-                                    <a class="dropdown-item" asp-page="/Admin/Barbers/Index">
-                                        Borbélyok kezelése
-                                    </a>
-                                </div>
-                            </li>
+                                <a class="dropdown-item" asp-page="/Admin/Appointments/Create">
+                                    Nyitva tartás rögzítése
+                                </a>
+                            </div>
+                        </li>
                         }
 
                         @if (User.IsInRole("Barbers"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/BarberAdmin/Index">Saját borbély felület</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/BarbersAppointments/Index">Előjegyzett időpontok</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="">Időpont foglalás</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Index">Időpontfoglalás</a>
                         </li>
                     </ul>
                 </div>

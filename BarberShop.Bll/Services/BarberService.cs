@@ -28,8 +28,7 @@ namespace BarberShop.Bll.Services
             Name = b.Name,
             PublicDescription = b.PublicDescription,
             ShortPublicDescription = b.PublicDescription.Shorten(200),
-            PhotoPath = b.PhotoPath
-            // ide jön majd még az email
+            PhotoPath = b.PhotoPath            
         };
 
         public async Task<IList<BarberDTO>> GetBarbersAsync()
@@ -37,7 +36,6 @@ namespace BarberShop.Bll.Services
             return (await DbContext.Barbers.Where(b => b.IsDeleted == false)
                 .Select(BarberSelector)
                 .ToListAsync())
-                .OrderBy(b => b.Name)
                 .ToList();
         }
 
@@ -76,8 +74,6 @@ namespace BarberShop.Bll.Services
 
         public async Task DeleteBarberAsync(int id)
         {
-            //var barber = await DbContext.Barbers.FindAsync(id);
-
             var barber = await DbContext.AppUsers
                 .Where(au => au.BarberId == id)
                 .Include(au => au.Barber)

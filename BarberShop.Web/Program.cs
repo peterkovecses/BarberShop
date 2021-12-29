@@ -29,6 +29,11 @@ namespace BarberShop.Web
                 // create the admin user
                 var userSeeder = scope.ServiceProvider.GetRequiredService<IUserSeedService>();
                 await userSeeder.SeedUserAsync();
+
+                // create appointments
+                var appointmentSeeder = scope.ServiceProvider.GetRequiredService<IAppointmentSeedService>();
+                await appointmentSeeder.SeedAppointmentAsync();
+
             }
             host.Run();
         }
