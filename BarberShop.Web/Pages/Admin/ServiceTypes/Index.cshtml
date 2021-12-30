@@ -1,0 +1,14 @@
+﻿@page
+@model BarberShop.Web.Pages.Admin.ServiceTypes.IndexModel
+
+<vc:service-types display-type="@Enums.DisplayType.Admin"></vc:service-types>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#serviceTypesTable').dataTable();
+        });
+    </script>
+
+    <script src="/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+}

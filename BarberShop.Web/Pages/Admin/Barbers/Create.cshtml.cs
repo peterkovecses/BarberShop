@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BarberShop.Web.Interfaces;
 using BarberShop.Web.Enums;
+using Ganss.XSS;
 
 namespace BarberShop.Web.Pages.Admin.Barbers
 {
@@ -32,6 +33,8 @@ namespace BarberShop.Web.Pages.Admin.Barbers
         {
             if (!ModelState.IsValid)
                 return Page();
+
+            Barber.PublicDescription = new HtmlSanitizer().Sanitize(Barber.PublicDescription);
 
             // File upload (photo)
             if (Barber.Photo != null && !string.IsNullOrEmpty(Barber.Photo.FileName))
