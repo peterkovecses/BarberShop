@@ -31,12 +31,7 @@ namespace BarberShop.Web.Pages.Admin.Appointments
             if (message != null)
                 StatusMessage = message;
 
-            BarbersInDb = await BarberService.GetBarbersAsync();
-
-            if (BarbersInDb == null)
-                return NotFound();
-
-            return Page();
+            return await GetBarbersAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
