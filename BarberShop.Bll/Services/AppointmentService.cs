@@ -25,6 +25,7 @@ namespace BarberShop.Bll.Services
         {
             Id = a.Id,
             Date = a.Date,
+            FullDate = a.Date,
             ServiceTypeId = a.ServiceTypeId,
             ServiceTypeName = a.ServiceType.Name,
             AppUserId = a.AppUserId,

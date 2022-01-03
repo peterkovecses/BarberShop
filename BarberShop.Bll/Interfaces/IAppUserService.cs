@@ -7,6 +7,8 @@ namespace BarberShop.Bll.Interfaces
     {
         public Task AddBarberUserAsync(BarberUserDTO barberUserDTO);
 
-        public Task<BarberUserDTO> GetBarberUserAsync(int id);
+        public Task<BarberUserDTO> GetBarberUserAsync(int barberId);
+
+        public Task<int> GetBarberIdByAppUserIdAsync(int appUserId);
     }
 }

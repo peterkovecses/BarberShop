@@ -53,10 +53,10 @@ namespace BarberShop.Bll.Services
             }
         }
 
-        public async Task<BarberUserDTO> GetBarberUserAsync(int id)
+        public async Task<BarberUserDTO> GetBarberUserAsync(int barberId)
         {
             return await DbContext.AppUsers
-                .Where(au => au.BarberId == id)
+                .Where(au => au.BarberId == barberId)
                 .Include(au => au.Barber)
                 .Select(au => new BarberUserDTO
                 {
@@ -68,6 +68,14 @@ namespace BarberShop.Bll.Services
                     PhotoPath = au.Barber.PhotoPath,
                     BarberId = au.BarberId
                 })
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<int> GetBarberIdByAppUserIdAsync(int appUserId)
+        {
+            return await DbContext.AppUsers
+                .Where(au => au.Id == appUserId)
+                .Select(au => au.BarberId.Value)
                 .SingleOrDefaultAsync();
         }
     }

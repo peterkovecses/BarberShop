@@ -23,14 +23,10 @@ namespace BarberShop.Web.Pages.Admin.Appointments
 
         public IList<BarberDTO> BarbersInDb { get; set; }
 
-        [TempData]
         public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string message)
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (message != null)
-                StatusMessage = message;
-
             return await GetBarbersAsync();
         }
 
@@ -47,7 +43,8 @@ namespace BarberShop.Web.Pages.Admin.Appointments
             else
                 StatusMessage = result.Item2;
 
-            return RedirectToPage(new { message = StatusMessage });
+            await GetBarbersAsync();
+            return Page();
         }
 
         public async Task<ActionResult> GetBarbersAsync()

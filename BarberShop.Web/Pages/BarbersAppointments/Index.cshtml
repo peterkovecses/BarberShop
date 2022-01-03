@@ -1,13 +1,13 @@
 ﻿@page
 @model BarberShop.Web.Pages.BarbersAppointments.IndexModel
 
-<h1>Lefoglallt időpontok</h1>
+<h1>Lefoglalt időpontok</h1>
 
 <table class="table" id="consultingsTable">
     <thead>
         <tr>
             <th class="col-md-4">
-                @Html.DisplayNameFor(model => model.Appointments[0].Date)
+                @Html.DisplayNameFor(model => model.Appointments[0].FullDate)
             </th>
 
             <th class="col-md-4">
@@ -25,7 +25,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => item.FullDate)
                 </td>
 
                 <td>

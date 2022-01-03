@@ -58,6 +58,10 @@ namespace BarberShop.Web.Areas.Identity.Pages.Account
 
             [Required]
             public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -134,10 +138,10 @@ namespace BarberShop.Web.Areas.Identity.Pages.Account
 
                 // If the email adress not changed, don't need to confirm it
                 if (Input.Email.Equals(Input.ExternalEmail))
-                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, EmailConfirmed = true };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber, EmailConfirmed = true };
 
                 else
-                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

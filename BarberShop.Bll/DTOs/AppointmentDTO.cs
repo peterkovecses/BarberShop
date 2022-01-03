@@ -17,6 +17,10 @@ namespace BarberShop.Bll.DTOs
         [DisplayFormat(DataFormatString = "{0: HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Időpont")]
+        [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime FullDate { get; set; }
+
         [Display(Name = "Szolgáltatás")]
         public int? ServiceTypeId { get; set; }
 
