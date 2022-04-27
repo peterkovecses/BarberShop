@@ -24,7 +24,6 @@ namespace BarberShop.Data
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             TestDataConfiguration.ConfigureSeedData(modelBuilder);
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
