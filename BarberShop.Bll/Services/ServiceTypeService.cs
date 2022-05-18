@@ -39,9 +39,9 @@ namespace BarberShop.Bll.Services
 
         public async Task<ServiceTypeDTO> GetServiceTypeAsync(int id)
         {
-            return (await DbContext.ServiceTypes.Where(st => st.Id == id)
+            return await DbContext.ServiceTypes.Where(st => st.Id == id)
                 .Select(ServiceTypeSelector)
-                .SingleOrDefaultAsync());
+                .SingleOrDefaultAsync();
         }
 
         public async Task AddOrUpdateServiceTypeAsync(ServiceTypeDTO serviceTypeDTO)

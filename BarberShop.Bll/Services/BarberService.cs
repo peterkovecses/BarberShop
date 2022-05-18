@@ -32,17 +32,16 @@ namespace BarberShop.Bll.Services
 
         public async Task<IList<BarberDTO>> GetBarbersAsync()
         {
-            return (await DbContext.Barbers.Where(b => b.IsDeleted == false)
+            return await DbContext.Barbers.Where(b => b.IsDeleted == false)
                 .Select(_barberSelector)
-                .ToListAsync())
-                .ToList();
+                .ToListAsync();
         }
 
         public async Task<BarberDTO> GetBarberAsync(int id)
         {
-            return (await DbContext.Barbers.Where(b => b.Id == id)
+            return await DbContext.Barbers.Where(b => b.Id == id)
                 .Select(_barberSelector)
-                .SingleOrDefaultAsync());
+                .SingleOrDefaultAsync();
         }
 
         public async Task<int> AddBarberAsync(BarberUserDTO barberUserDTO)
