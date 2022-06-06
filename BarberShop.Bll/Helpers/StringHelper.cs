@@ -15,10 +15,10 @@ namespace BarberShop.Bll.Helpers
         {
             if (current == null)
                 return "";
-            if (current.Length < 201)
+            if (current.Length <= maxLenght)
                 return current;
 
-            return current[0..(maxLenght - 1)] + "...";
+            return current[0..(maxLenght)] + "...";
         }
 
         /// <summary>
